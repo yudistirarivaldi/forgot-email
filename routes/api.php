@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MultipleController;
 use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -18,7 +19,10 @@ use Illuminate\Auth\Events\PasswordReset;
 |
 */
 
-Route::post('/forgot-password', [ResetPasswordController::class, 'forgetPassword'])->name('forgot.email');
+Route::post('/item-create', [MultipleController::class, 'createMultiple']);
+// Route::get('/item-create', [MultipleController::class, 'getMultiple']);
+// Route::post('/item-update', [MultipleController::class, 'editMultiple']);
+
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();

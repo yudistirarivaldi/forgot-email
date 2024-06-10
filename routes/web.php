@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\BarangController;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\MultipleController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\PembelianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,24 +29,47 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/forgot-password', [ForgotPasswordController::class, 'getForgotPassword'])
-->middleware('guest')->name('password.request');
-
-Route::post('/forgot-password', [ForgotPasswordController::class, 'postForgotPassword'])
-->middleware('guest')->name('password.email');
 
 
-Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'getResetPasswordToken'])->middleware('guest')->name('password.reset');
+Route::get('/create', [PembelianController::class, 'create']);
+Route::get('/pembelian', [PembelianController::class, 'index'])->name('pembelian.index');
 
+Route::get('/pembelian/{id}/edit', [PembelianController::class, 'edit'])->name('pembelian.edit');
+Route::post('/pembelian/{id}', [PembelianController::class, 'update'])->name('pembelian.update');
+Route::delete('/pembelian/{id}', [PembelianController::class, 'destroy'])->name('pembelian.destroy');
 
-Route::post('/reset-password', [ForgotPasswordController::class, 'postResetPasswordToken'])->middleware('guest')->name('password.update');
-
-
+Route::get('/barang', [PembelianController::class, 'barang']);
+Route::post('/save-pembelian', [PembelianController::class, 'store'])->name('save-pembelian');
 
 
 
-// Route::get('/forgot-password', [ResetPasswordController::class, 'forgotPasswordLoad']);
-// Route::post('/forgot-password', [ResetPasswordController::class, 'forgetPassword'])->name('forgot.email');
 
-// Route::get('/reset-password', [ResetPasswordController::class, 'resetPasswordLoad']);
-// Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
